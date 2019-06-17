@@ -10,22 +10,25 @@
 <video id="video" width="160" height="120" autoplay></video>
 <canvas id="preview" width="160" height="120"></canvas>
 <script>
-var start = () => navigator.mediaDevices.getUserMedia({ video: true })
-  .then(stream => {
+var start = function () {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
       video.srcObject = stream
-  })
-  .catch(log);
-
+    })
+    .catch(log);
+  }
 var canvas = document.createElement("canvas");
 canvas.width = 640;
 canvas.height = 480;
 
-var snap = () => {
+var snap = function () {
   canvas.getContext('2d').drawImage(video, 0, 0, 640, 480);
   preview.getContext('2d').drawImage(canvas, 0, 0, 160, 120);
 }
 
-var log = msg => div.innerHTML += "<br>" + msg
+var log = function(msg) {
+    div.innerHTML += "<br>" + msg
+  }
 </script>
 </body>
 </html>
