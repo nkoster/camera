@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Skeleton</title>
+</head>
+<body>
+<button onclick="start()">Start!</button>
+<button onclick="snap()">Snap!</button><div id="div"></div>
+<video id="video" width="160" height="120" autoplay></video>
+<canvas id="preview" width="160" height="120"></canvas>
+<script>
+var start = () => navigator.mediaDevices.getUserMedia({ video: true })
+  .then(stream => {
+      video.srcObject = stream
+  })
+  .catch(log);
+
+var canvas = document.createElement("canvas");
+canvas.width = 640;
+canvas.height = 480;
+
+var snap = () => {
+  canvas.getContext('2d').drawImage(video, 0, 0, 640, 480);
+  preview.getContext('2d').drawImage(canvas, 0, 0, 160, 120);
+}
+
+var log = msg => div.innerHTML += "<br>" + msg
+</script>
+</body>
+</html>
