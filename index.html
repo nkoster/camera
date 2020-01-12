@@ -13,6 +13,9 @@
 var start = function () {
   navigator.mediaDevices.getUserMedia({ video: true })
     .then(function(stream) {
+      video.setAttribute('autoplay', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
       video.srcObject = stream
     })
     .catch(log);
